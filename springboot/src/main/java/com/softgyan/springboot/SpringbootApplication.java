@@ -107,8 +107,6 @@ public class SpringbootApplication {
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(SpringbootApplication.class, args);
         UserRepository userRepository = applicationContext.getBean(UserRepository.class);
-        User user1 = new User("Ankit", "Patna", "I am Web Developer");
-        User user2 = new User("Ritunjay", "A.bad", "I am java Developer");
 
         boolean isExit = false;
         while (!isExit) {
