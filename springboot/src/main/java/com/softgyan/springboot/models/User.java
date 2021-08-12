@@ -21,7 +21,7 @@ public class User {
     }
 
     public User(User userTemp){
-        this(userTemp.get_id(), userTemp.get_name(), userTemp.get_city(), userTemp.get_status());
+        this(userTemp.getId(), userTemp.getName(), userTemp.getCity(), userTemp.getStatus());
     }
 
     public User(int _id, String _name, String _city, String _status) {
@@ -34,44 +34,44 @@ public class User {
         this(-1,_name,_city,_status);
     }
 
-    public int get_id() {
+    public int getId() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void setId(int _id) {
         this._id = _id;
     }
 
-    public String get_name() {
+    public String getName() {
         return _name;
     }
 
-    public void set_name(String _name) {
+    public void setName(String _name) {
         this._name = _name;
     }
 
-    public String get_city() {
+    public String getCity() {
         return _city;
     }
 
-    public void set_city(String _city) {
+    public void setCity(String _city) {
         this._city = _city;
     }
 
-    public String get_status() {
+    public String getStatus() {
         return _status;
     }
 
-    public void set_status(String _status) {
+    public void setStatus(String _status) {
         this._status = _status;
     }
 
 
     public User updateUser(User user){
-        this._id = user.get_id();;
-        this._name = user.get_name();
-        this._city = user.get_city();
-        this._status = user.get_status();
+        this._id = user.getId();;
+        this._name = user.getName();
+        this._city = user.getCity();
+        this._status = user.getStatus();
 
         return this;
     }

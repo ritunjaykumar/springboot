@@ -2,11 +2,13 @@ package com.softgyan.springboot;
 
 import com.softgyan.springboot.dao.UserRepository;
 import com.softgyan.springboot.models.User;
+import com.softgyan.springboot.utils.Utils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.util.*;
+
 
 @SpringBootApplication
 /*
@@ -16,71 +18,19 @@ combination of given attributes
 @ComponentScan*/
 
 public class SpringbootApplication {
-    private static List<User> getAllUserList(UserRepository userRepository) {
-        Iterable<User> all = userRepository.findAll();
-        List<User> users = new ArrayList<>();
-        all.forEach(users::add);
-        return users;
-    }
-
-    private static void deleteUserById(UserRepository userRepository, int... ids) {
-        if (ids.length == 1) {
-            userRepository.deleteById(ids[0]);
-            return;
-        }
-        ArrayList<Integer> toDelete = new ArrayList<>();
-        for (int i : ids) {
-            toDelete.add(i);
-        }
-        userRepository.deleteAllById(toDelete);
-    }
-
-
-    private static User updateUserById(UserRepository userRepository, final User toUpdateUser) {
-        Optional<User> userOptional = userRepository.findById(toUpdateUser.get_id());
-        if (userOptional.isPresent()) {
-            User tempUser = userOptional.get();
-            if (!toUpdateUser.get_name().equals("no")) {
-                tempUser.set_name(toUpdateUser.get_name());
-            }
-            if (!toUpdateUser.get_city().equals("no")) {
-                tempUser.set_city(toUpdateUser.get_city());
-            }
-
-            if (!toUpdateUser.get_status().equals("no")) {
-                tempUser.set_status(toUpdateUser.get_status());
-            }
-            return userRepository.save(tempUser);
-        }
-        return null;
-    }
-
-
-    private static User insertNewUser(UserRepository userRepository, final User user) {
-        return userRepository.save(user);
-    }
-
-    private static void log(Object string) {
-        System.out.print(string);
-    }
-
-    private static void logN(Object s) {
-        System.out.println(s);
-    }
-
 
     private static int optionMessage() {
-        logN("1. insert new data");
-        logN("2. update user by id");
-        logN("3. delete user by id");
-        logN("4. show all records");
-        logN("5. Exit");
-        log("your option : ");
+        Utils.logN("1. insert new data");
+        Utils.logN("2. update user by id");
+        Utils.logN("3. delete user by id");
+        Utils.logN("4. show all records");
+        Utils.logN("5. Exit");
+        Utils.log("your option : ");
         Scanner sc = new Scanner(System.in);
         try {
             return sc.nextInt();
         } catch (Exception e) {
-            logN(e.getMessage());
+            Utils.logN(e.getMessage());
         }
         return 5;
     }
@@ -90,16 +40,16 @@ public class SpringbootApplication {
         Scanner sc = new Scanner(System.in);
         User user = new User();
         if (isUpdate) {
-            log("User id : ");
-            user.set_id(sc.nextInt());
+            Utils.log("User id : ");
+            user.setId(sc.nextInt());
             sc.nextLine();
         }
-        log("Name : ");
-        user.set_name(sc.nextLine());
-        log("city : ");
-        user.set_city(sc.nextLine());
-        log("status : ");
-        user.set_status(sc.nextLine());
+        Utils.log("Name : ");
+        user.setName(sc.nextLine());
+        Utils.log("city : ");
+        user.setCity(sc.nextLine());
+        Utils.log("status : ");
+        user.setStatus(sc.nextLine());
         return user;
     }
 
@@ -108,24 +58,24 @@ public class SpringbootApplication {
         ApplicationContext applicationContext = SpringApplication.run(SpringbootApplication.class, args);
         UserRepository userRepository = applicationContext.getBean(UserRepository.class);
 
-        boolean isExit = false;
+        /*boolean isExit = false;
         while (!isExit) {
             int optionMessage = optionMessage();
             switch (optionMessage) {
                 case 1: {
 
                     User insertNewUser = insertNewUser(userRepository, enterUserDetails(false));
-                    logN(insertNewUser.toString());
+                    Utils.logN(insertNewUser.toString());
                     break;
                 }
 
                 case 2: {
-                    logN("if you don't want to update please enter \"no\"");
+                    Utils.logN("if you don't want to update please enter \"no\"");
                     User user = updateUserById(userRepository, enterUserDetails(true));
                     if (user == null) {
-                        logN("data not found");
+                        Utils.logN("data not found");
                     } else {
-                        logN("updated");
+                        Utils.logN("updated");
                     }
                     break;
                 }
@@ -139,7 +89,7 @@ public class SpringbootApplication {
                 }
                 case 4: {
                     List<User> allUserList = getAllUserList(userRepository);
-                    logN(allUserList);
+                    Utils.logN(allUserList);
                     break;
                 }
                 case 5: {
@@ -147,7 +97,10 @@ public class SpringbootApplication {
                     break;
                 }
             }
-        }
+        }*/
+
+
+
 
     }
 
